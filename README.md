@@ -146,4 +146,6 @@ async function getData() {
 - "First" will be logged immediately and then after five seconds "Promise 1 resolved" and this Val will be resolved after five seconds and then the program will suspend, the execution will suspend and then after 10 seconds the getData() will again start the execution.
 - Basically JavaScript engine isnt waiting for this promise to be resolved. This getData() will not keep waiting in the call stack.
 - JavaScript engine isn't waiting, it is quickly executing everything but getData() will suspend the execution if the promise is not resolved and then it will continue once that promise is resolved.
+- Function execution is suspended. JavaScript has is doing its job right. The call stack is empty if anything else is coming into the call stack it will handle it quickly right JavaScript does not wait for anything but over here it it looks like the program is waiting over here the program is not waiting. If there were more functions, more event handlers meanwhile that 10 seconds right the 10 seconds will be taken for promise to resolve if meanwhile somebody is clicking onto the web page everything will work everything will work as expected .
+- Call stack is something which can which can not be blocked.
 

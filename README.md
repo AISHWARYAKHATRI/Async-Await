@@ -115,3 +115,26 @@ async function getData() {
 ```
 - Lets make P1 promises five seconds and make the P2 promises 10 seconds
 - So "First" is printed. Now after five seconds our first promise is rolled and it is printed onto the console after total 10 seconds the other promise is rolled and printed. 
+
+## The Catch! Is the program actually waiting here or not when we use await, what is happening behind the scenes?
+- People don't understand how promise execution behavior is working is the program.
+- JS engine was waiting for promise to be resolved over here.
+- "JS engine was waiting for promise to be resolved". What does it actually mean?
+- So JS engine just like time tied does not wait for anything it is 200% true.
+- JS engine just appears to be waiting over here.
+- JS engine is not waiting over here if it has not it is not consuming memory over here, it has not actually occupied the call stack
+- If waiting was the case then our program or our page will freeze our page. But it has not frozen our page.
+- So this statement that JS engine was waiting is not true at all right.
+- It looks like the JS engine is waiting but it is not true at all.
+
+## Now if the program does not wait then what does it do actually how does it work behind the scenes?
+- When this function will be executed it will go line by line because JavaScript is a synchronous single threaded language.
+- Call stack is empty right. Basically call stack is the place where every function works right it will come and it will work it will execute our code.
+- As soon as this getData() function is called, so it it sees that okay there are two promises which needs to be resolved there and these promises are taking their own time in resolution.
+- So basically there are two promise right P1 and P2, they will be resolved at some point of time after 5 seconds after 10 seconds or after we don't know what time it will resolve.
+- Initially the call stack is empty over here as soon as we call this getData function, so this getData() function will come inside your call stack right now, because JavaScript is is a synchronous single, it has only one thread, it has only one call stack so it will start executing all of this one by one.
+- Its will start executing this lines one by one so first of all it will execute the line and it will log "First" to the console.
+- It will see that there is a await P1 over here now there are two cases, will this getDta() stay over here in the call stack and wait for the promise to resolve?
+- The answer is no.
+
+

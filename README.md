@@ -136,5 +136,12 @@ async function getData() {
 - Its will start executing this lines one by one so first of all it will execute the line and it will log "First" to the console.
 - It will see that there is a await P1 over here now there are two cases, will this getDta() stay over here in the call stack and wait for the promise to resolve?
 - The answer is no.
-
+- JavaScript does not wait for anything and this handle promise function is execution will suspend and this will move out of call stack it will not block the main thread, it will not freeze your page so that if any other events are happening they can execute inside call stack because JavaScript just have one small stack.
+- So when it sees a await function, the function execution suspends. It will wait till this P1 is resolved and once this P1 is resolved then only it will move ahead .
+- Here P1 will be resolved after 5 Seconds. This call stack will remain empty but after five seconds, the getData() function will again come in call stack and it will again start executing but this time it will start executing from where it left.
+- And then it will see whether this P2 is resolved or not it sees that P2 is not yet resolved because it has just been five seconds right and the P2 will resolve after 10 seconds and the P2 will result after 10 seconds. 
+- What it will do it will again suspend and will not block the call stack. 
+- Basically it will again suspend the execution.
+- P2 is resolved after 10 seconds now getData() will again come back to call stack, getData() will again come back to call stack and it start executing from the place it left.
+- "First" will be logged immediately and then after five seconds "Promise 1 resolved" and this Val will be resolved after five seconds and then the program will suspend, the execution will suspend and then after 10 seconds the getData() will again start the execution.
 

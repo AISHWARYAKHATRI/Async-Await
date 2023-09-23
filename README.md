@@ -144,4 +144,6 @@ async function getData() {
 - Basically it will again suspend the execution.
 - P2 is resolved after 10 seconds now getData() will again come back to call stack, getData() will again come back to call stack and it start executing from the place it left.
 - "First" will be logged immediately and then after five seconds "Promise 1 resolved" and this Val will be resolved after five seconds and then the program will suspend, the execution will suspend and then after 10 seconds the getData() will again start the execution.
+- Basically JavaScript engine isnt waiting for this promise to be resolved. This getData() will not keep waiting in the call stack.
+- JavaScript engine isn't waiting, it is quickly executing everything but getData() will suspend the execution if the promise is not resolved and then it will continue once that promise is resolved.
 

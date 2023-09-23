@@ -69,5 +69,49 @@ async function getData() {
 
 ## Lets make it even more complicated. What happens in the case below?
 ```
-```
+const p = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("1"), 10000);
+});
 
+const p2 = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("2"), 5000);
+});
+
+async function getData() {
+  console.log("First");
+  const data = await p;
+  console.log("Promise 1 resolved");
+  console.log(data);
+
+  const data2 = await p2;
+  console.log("Promise 2 resolved");
+  console.log(data);
+}
+```
+- P1 is 10 seconds and P2 is five seconds.
+- "First" will be printed immediately quickly but what will happen to p1 promise,  JavaScript should wait over here for 10 seconds and over here for p2 promise which is 5 seconds i.e after 15 seconds, everything after promise 2 should be printed. So what will happen JavaScript will get confused.
+- After 10 seconds all of these it's printed isn't it interesting right. P1 promise was resolved in five seconds but still the lines below had to wait for 10 seconds to resolve.
+
+## Lets reverse the case!
+```
+const p = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("1"), 5000);
+});
+
+const p2 = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("2"), 10000);
+});
+
+async function getData() {
+  console.log("First");
+  const data = await p;
+  console.log("Promise 1 resolved");
+  console.log(data);
+
+  const data2 = await p2;
+  console.log("Promise 2 resolved");
+  console.log(data);
+}
+```
+- Lets make P1 promises five seconds and make the P2 promises 10 seconds
+- So "First" is printed. Now after five seconds our first promise is rolled and it is printed onto the console after total 10 seconds the other promise is rolled and printed. 
